@@ -7,6 +7,8 @@
 #include <string.h>
 #include <errno.h>
 #include <sys/wait.h>
+#include "commands/cd/change_directory.h"
+
 #define BUFFER_SIZE 1024
 #define MAX_ARGS 64
 
@@ -24,7 +26,7 @@ void parse_input(char** args, char* input) {
     args[i] = NULL;
 }
 
-// A simple shell implementation that forks a child process to execute commands
+// Shell entry point, forks current process to execute user's commands
 int main(int argc, char* argv[]) {
 
     char buffer[BUFFER_SIZE];
@@ -43,6 +45,15 @@ int main(int argc, char* argv[]) {
             continue;
         }
 
+        if (strcmp(args[0], "cd") == 0) {
+            change_dir(args[1]);
+            continue;
+        }
+
+        if (strcmp(args[0], "exit") == 0) {
+            exit(0);
+        }
+
         pid = fork();
 
         // parent process
@@ -51,6 +62,7 @@ int main(int argc, char* argv[]) {
             pid = wait(&child_status);
             printf("Child (%d) finished\n", pid);
         } 
+
         // child process
         else {
             if(execvp(args[0], args)) {
