@@ -8,6 +8,7 @@
 #include <errno.h>
 #include <sys/wait.h>
 #include "commands/cd/change_directory.h"
+#include "commands/basic-gcc/bcompile.h"
 
 #define BUFFER_SIZE 1024
 #define MAX_ARGS 64
@@ -47,6 +48,11 @@ int main(int argc, char* argv[]) {
 
         if (strcmp(args[0], "cd") == 0) {
             change_dir(args[1]);
+            continue;
+        }
+
+        if (strcmp(args[0], "bcompile") == 0) {
+            basic_gcc_compile(args);
             continue;
         }
 
