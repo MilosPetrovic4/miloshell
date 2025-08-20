@@ -1,4 +1,4 @@
-#include "bcompile.h"
+#include "../include/bcompile.h"
 
 const char *GCC_PATH = "/usr/bin/gcc";
 const char *GCC_WALL_FLAG = "-Wall";

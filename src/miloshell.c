@@ -7,8 +7,8 @@
 #include <string.h>
 #include <errno.h>
 #include <sys/wait.h>
-#include "commands/cd/change_directory.h"
-#include "commands/basic-gcc/bcompile.h"
+#include "include/cd.h"
+#include "include/bcompile.h"
 
 #define BUFFER_SIZE 1024
 #define MAX_ARGS 64
