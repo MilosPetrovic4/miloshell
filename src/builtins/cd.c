@@ -1,4 +1,4 @@
-#include "change_directory.h"
+#include "../include/cd.h"
 
 int change_dir(const char* path) {
 

@@ -1,5 +1,5 @@
-#ifndef CHANGE_DIRECTORY_H
-#define CHANGE_DIRECTORY_H
+#ifndef CD_H
+#define CD_H
 
 #include <stdio.h>
 #include <unistd.h>
