@@ -33,6 +33,8 @@ void parse_input(char** args, char* input) {
 
 // Shell entry point, forks current process to execute user's commands
 int main(int argc, char* argv[]) {
+    (void)argc;
+    (void)argv;
 
     char buffer[BUFFER_SIZE];
     char *args[MAX_ARGS];
