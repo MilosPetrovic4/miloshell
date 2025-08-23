@@ -1,4 +1,3 @@
-
 #include <unistd.h>
 #include <sys/types.h>
 #include <termios.h>
@@ -13,6 +12,7 @@
 #include "include/bcompile.h"
 #include "include/utils.h"
 #include "include/cmd_history.h"
+#include "include/forker.h"
 
 #define MAX_ARGS 64
 #define BUFFER_SIZE 1024
@@ -38,8 +38,7 @@ int main(int argc, char* argv[]) {
 
     char buffer[BUFFER_SIZE];
     char *args[MAX_ARGS];
-    int child_status;
-    pid_t pid;
+
     struct termios original_term;
 
     enable_raw_mode(&original_term);
@@ -129,20 +128,7 @@ int main(int argc, char* argv[]) {
             exit(0);
         }
 
-        pid = fork();
-
-        // parent process
-        if (pid) { 
-            pid = wait(&child_status); 
-        } 
-
-        // child process
-        else {
-            if(execvp(args[0], args)) {
-                puts(strerror(errno));
-                exit(127);
-            }
-        }
+        fork_and_execute(args);
     }
     disable_raw_mode(&original_term); 
     return 0;
