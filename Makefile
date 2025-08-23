@@ -7,7 +7,7 @@ SUBDIRS = builtins utils shortcuts
 # SHORTCUTS_OBJS = $(wildcard build/shortcuts/*.o)
 
 BUILTINS_OBJS = build/builtins/bcompile.o build/builtins/cd.o
-UTILS_OBJS = build/utils/utils.o
+UTILS_OBJS = build/utils/utils.o build/utils/forker.o
 SHORTCUTS_OBJS = build/shortcuts/cmd_history.o
 
 SUB_OBJS = $(BUILTINS_OBJS) $(UTILS_OBJS) $(SHORTCUTS_OBJS)
